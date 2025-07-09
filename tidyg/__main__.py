@@ -21,7 +21,10 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-functions = {}
+functions = {
+    "root2hog": functions.root2hog,
+    "omamer2hog": functions.omamer2hog,
+}
 
 if __name__ == "__main__":
     main()
