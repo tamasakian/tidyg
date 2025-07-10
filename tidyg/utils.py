@@ -17,7 +17,7 @@ def load_fastoma_records(input_file: str) -> list[tuple[str, str, str]]:
             if line.startswith("RootHOG"):
                 continue
             li = line.strip().split("\t")
-            if len(li) == 3:
+            if len(li) != 3:
                 continue
             records.append((li[0], li[1], li[2]))
     return records
