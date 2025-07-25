@@ -21,3 +21,21 @@ def load_fastoma_records(input_file: str) -> list[tuple[str, str, str]]:
                 continue
             records.append((li[0], li[1], li[2]))
     return records
+
+def load_long_records(input_file: str) -> dict[str, list[str]]:
+    """
+    This function reads a long format TSV file and extracts the RootHOG, GeneID, and OMAmerRootHOG columns.
+
+    Args:
+        input_file: Path to the long format TSV file.
+
+    Returns:
+        list: A list of tuples containing (RootHOG, GeneID, OMAmerRootHOG).
+
+    """
+    group2genes = {}
+    with open(input_file, "r") as input_handle:
+        for line in input_handle:
+            group, gene = line.strip().split("\t")
+            group2genes.setdefault(group, []).append(gene)
+    return group2genes

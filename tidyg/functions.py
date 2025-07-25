@@ -27,3 +27,16 @@ def omamer2hog(input_file: str, output_file: str) -> None:
     with open(output_file, "w") as output_handle:
         for _, gene, omamer in records:
             output_handle.write(f"{gene}\t{omamer}\n")
+
+def pivot_wider(input_file: str, output_file: str) -> None:
+    """
+    This function reads a long format TSV file and writes it in a wider format to an output file.
+
+    Args:
+        input_file: Path to the long format TSV file.
+        output_file: Path to the output file where the wider format will be written.
+    """
+    group2genes = utils.load_long_records(input_file)
+    with open(output_file, "w") as output_handle:
+        for group, genes in group2genes.items():
+            output_handle.write(f"{group}\t" + "\t".join(genes) + "\n")
