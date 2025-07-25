@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tidyg"
-version = "0.1.3"
+version = "0.1.4"
 description = "TIDYG: A Python tool to tidy and unify ortholog group files from various sources into a consistent format."
 authors = [
     {name = "tamasakian", email = "tamasakian@gmail.com"}

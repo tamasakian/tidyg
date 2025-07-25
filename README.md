@@ -31,3 +31,10 @@ python3 -m tidyg pivot_wider input.tsv output.tsv
 ```
 - `input.tsv`: The input file in long format.
 - `output.tsv`: The output file in wide format.
+
+### pivot_longer
+This function pivots a DataFrame from wide to long format.
+```python3 -m tidyg pivot_longer input.tsv output.tsv
+```
+- `input.tsv`: The input file in wide format.
+- `output.tsv`: The output file in long format.
