@@ -13,7 +13,7 @@ def root2hog(input_file: str, output_file: str) -> None:
     records = utils.load_fastoma_records(input_file)
     with open(output_file, "w") as output_handle:
         for root, gene, _ in records:
-            output_handle.write(f"{gene}\t{root}\n")
+            output_handle.write(f"{root}\t{gene}\n")
 
 def omamer2hog(input_file: str, output_file: str) -> None:
     """
@@ -26,7 +26,7 @@ def omamer2hog(input_file: str, output_file: str) -> None:
     records = utils.load_fastoma_records(input_file)
     with open(output_file, "w") as output_handle:
         for _, gene, omamer in records:
-            output_handle.write(f"{gene}\t{omamer}\n")
+            output_handle.write(f"{omamer}\t{gene}\n")
 
 def pivot_wider(input_file: str, output_file: str) -> None:
     """
