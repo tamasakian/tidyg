@@ -23,3 +23,11 @@ python3 -m tidyg omamer2hog input.tsv output.tsv
 ```
 - `input.tsv`: The input FastOMA TSV file, called `RootHOGs.tsv`.
 - `output.tsv`: The output file where the OMAmerRootHOG and GeneID columns will be written.
+
+### pivot_wider
+This function pivots a DataFrame from long to wide format.
+```
+python3 -m tidyg pivot_wider input.tsv output.tsv
+```
+- `input.tsv`: The input file in long format.
+- `output.tsv`: The output file in wide format.
