@@ -40,3 +40,17 @@ def pivot_wider(input_file: str, output_file: str) -> None:
     with open(output_file, "w") as output_handle:
         for group, genes in group2genes.items():
             output_handle.write(f"{group}\t" + "\t".join(genes) + "\n")
+
+def pivot_longer(input_file: str, output_file: str) -> None:
+    """
+    This function reads a wide format TSV file and writes it in a longer format to an output file.
+
+    Args:
+        input_file: Path to the wide format TSV file.
+        output_file: Path to the output file where the longer format will be written.
+    """
+    group2genes = utils.load_wide_records(input_file)
+    with open(output_file, "w") as output_handle:
+        for group, genes in group2genes.items():
+            for gene in genes:
+                output_handle.write(f"{group}\t{gene}\n")

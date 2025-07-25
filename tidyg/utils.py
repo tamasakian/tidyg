@@ -39,3 +39,25 @@ def load_long_records(input_file: str) -> dict[str, list[str]]:
             group, gene = line.strip().split("\t")
             group2genes.setdefault(group, []).append(gene)
     return group2genes
+
+def load_wide_records(input_file: str) -> dict[str, list[str]]:
+    """
+    This function reads a wide format TSV file and extracts the RootHOG, GeneID, and OMAmerRootHOG columns.
+
+    Args:
+        input_file: Path to the wide format TSV file.
+
+    Returns:
+        list: A list of tuples containing (RootHOG, GeneID, OMAmerRootHOG).
+
+    """
+    group2genes = {}
+    with open(input_file, "r") as input_handle:
+        for line in input_handle:
+            parts = line.strip().split("\t")
+            group = parts[0]
+            genes = parts[1:]
+            if not genes:
+                continue
+            group2genes[group] = genes
+    return group2genes

@@ -25,6 +25,7 @@ functions = {
     "root2hog": functions.root2hog,
     "omamer2hog": functions.omamer2hog,
     "pivot_wider": functions.pivot_wider,
+    "pivot_longer": functions.pivot_longer,
 }
 
 if __name__ == "__main__":
