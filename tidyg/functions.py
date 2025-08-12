@@ -14,6 +14,8 @@ def orthofinder2hog(input_file: str, output_file: str) -> None:
     with open(output_file, "w") as output_handle:
         for group, genes in records.items():
             for gene in genes:
+                if not gene:
+                    continue
                 output_handle.write(f"{group}\t{gene}\n")
 
 def sonicparanoid2hog(input_file: str, output_file: str) -> None:
