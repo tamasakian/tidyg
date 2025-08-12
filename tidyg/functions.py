@@ -2,6 +2,36 @@
 
 from tidyg import utils
 
+def orthofinder2hog(input_file: str, output_file: str) -> None:
+    """
+    This function reads an OrthoFinder TSV file and writes the Orthogroup and GeneID columns to an output file.
+
+    Args:
+        input_file: Path to the OrthoFinder TSV file.
+        output_file: Path to the output file where Orthogroup and GeneID will be written.
+    """
+    records = utils.load_orthofinder_records(input_file)
+    with open(output_file, "w") as output_handle:
+        for group, genes in records.items():
+            for gene in genes:
+                output_handle.write(f"{group}\t{gene}\n")
+
+def sonicparanoid2hog(input_file: str, output_file: str) -> None:
+    """
+    This function reads a SonicParanoid TSV file and writes the Orthogroup and GeneID columns to an output file.
+
+    Args:
+        input_file: Path to the SonicParanoid TSV file.
+        output_file: Path to the output file where Orthogroup and GeneID will be written.
+    """
+    records = utils.load_sonicparanoid_records(input_file)
+    with open(output_file, "w") as output_handle:
+        for group, genes in records.items():
+            for gene in genes:
+                if gene == "*":
+                    continue
+                output_handle.write(f"{group}\t{gene}\n")
+
 def root2hog(input_file: str, output_file: str) -> None:
     """
     This function reads a FastOMA TSV file and writes the RootHOG and GeneID columns to an output file.

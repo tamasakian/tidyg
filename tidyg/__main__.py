@@ -22,6 +22,8 @@ def parse_args():
     return args
 
 functions = {
+    "orthofinder2hog": functions.orthofinder2hog,
+    "sonicparanoid2hog": functions.sonicparanoid2hog,
     "root2hog": functions.root2hog,
     "omamer2hog": functions.omamer2hog,
     "pivot_wider": functions.pivot_wider,

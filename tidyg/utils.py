@@ -1,5 +1,57 @@
 #!/usr/bin/env python3
 
+import re
+
+def load_orthofinder_records(input_file: str) -> dict[str, list[str]]:
+    """
+    This function reads a OrthoFinder TSV file and extracts the Orthogroup and GeneID columns.
+
+    Args:
+        input_file: Path to the OrthoFinder TSV file.
+
+    Returns:
+        dict: A dictionary where keys are orthogroups and values are lists of gene IDs.
+
+    """
+    records = {}
+    with open(input_file, "r") as input_handle:
+        for line in input_handle:
+            if line.startswith("Orthogroup"):
+                continue
+            line = line.strip()
+            parts = re.split(r'[\t,]', line)
+            group = parts[0]
+            genes = parts[1:]
+            if not genes:
+                continue
+            records[group] = genes
+    return records
+
+def load_sonicparanoid_records(input_file: str) -> dict[str, list[str]]:
+    """
+    This function reads a SonicParanoid TSV file and extracts the Orthogroup and GeneID columns.
+
+    Args:
+        input_file: Path to the SonicParanoid TSV file.
+
+    Returns:
+        dict: A dictionary where keys are orthogroups and values are lists of gene IDs.
+
+    """
+    records = {}
+    with open(input_file, "r") as input_handle:
+        for line in input_handle:
+            if line.startswith("group_id"):
+                continue
+            line = line.strip()
+            parts = re.split(r'[\t,]', line)
+            group = parts[0]
+            genes = parts[1:]
+            if not genes:
+                continue
+            records[group] = genes
+    return records
+
 def load_fastoma_records(input_file: str) -> list[tuple[str, str, str]]:
     """
     This function reads a FastOMA TSV file and extracts the RootHOG, GeneID, and OMAmerRootHOG columns.
@@ -48,7 +100,7 @@ def load_wide_records(input_file: str) -> dict[str, list[str]]:
         input_file: Path to the wide format TSV file.
 
     Returns:
-        list: A list of tuples containing (RootHOG, GeneID, OMAmerRootHOG).
+        dict: A dictionary where keys are groups and values are lists of genes.
 
     """
     group2genes = {}
